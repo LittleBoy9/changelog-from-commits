@@ -1,6 +1,6 @@
 {
   "name": "changelog-from-commits",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.",
   "keywords": [
     "changelog",
