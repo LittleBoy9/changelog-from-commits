@@ -5,6 +5,12 @@ Generate a polished `CHANGELOG.md` from your git history, following the
 
 Zero config, **zero runtime dependencies**.
 
+[![npm version](https://img.shields.io/npm/v/changelog-from-commits.svg)](https://www.npmjs.com/package/changelog-from-commits)
+[![node](https://img.shields.io/node/v/changelog-from-commits.svg)](https://www.npmjs.com/package/changelog-from-commits)
+[![license](https://img.shields.io/npm/l/changelog-from-commits.svg)](./LICENSE)
+
+**[Docs and interactive playground →](https://littleboy9.github.io/changelog-from-commits/)** · [npm](https://www.npmjs.com/package/changelog-from-commits)
+
 ```bash
 npx changelog-from-commits
 ```

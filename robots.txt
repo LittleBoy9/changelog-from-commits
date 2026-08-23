@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://littleboy9.github.io/changelog-from-commits/sitemap.xml

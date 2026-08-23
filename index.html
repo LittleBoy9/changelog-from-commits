@@ -3,8 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>changelog-from-commits</title>
-<meta name="description" content="Generate a polished CHANGELOG.md from your git history, following Conventional Commits. Zero config, zero runtime dependencies.">
+<title>changelog-from-commits &mdash; Generate CHANGELOG.md from Conventional Commits</title>
+<meta name="description" content="Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.">
+<link rel="canonical" href="https://littleboy9.github.io/changelog-from-commits/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Sounak Das">
+<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0e13" media="(prefers-color-scheme: dark)">
+
+<!-- Open Graph / Twitter. The image is fetched by crawlers, never by this page,
+     so the document itself still makes zero network requests. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="changelog-from-commits">
+<meta property="og:url" content="https://littleboy9.github.io/changelog-from-commits/">
+<meta property="og:title" content="changelog-from-commits &mdash; Generate CHANGELOG.md from Conventional Commits">
+<meta property="og:description" content="Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.">
+<meta property="og:image" content="https://littleboy9.github.io/changelog-from-commits/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="changelog-from-commits: git commits transformed into a formatted changelog">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="changelog-from-commits &mdash; Generate CHANGELOG.md from Conventional Commits">
+<meta name="twitter:description" content="Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.">
+<meta name="twitter:image" content="https://littleboy9.github.io/changelog-from-commits/og-image.png">
 <!-- Inline data-URI favicon: keeps the page at zero network requests. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M7%205v14'%20stroke='%23888'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Ccircle%20cx='7'%20cy='5'%20r='3'%20fill='%231f7a4d'/%3E%3Ccircle%20cx='7'%20cy='19'%20r='3'%20fill='%231a5fa3'/%3E%3Ccircle%20cx='18'%20cy='12'%20r='3'%20fill='%238f5f0d'/%3E%3C/svg%3E">
 <style>
@@ -718,7 +739,157 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
   .gg-node, .gg-label { opacity: 1; }
   .gg-halo { display: none; }
 }
+
+/* --- FAQ ------------------------------------------------------------- */
+.faq-list { display: grid; gap: 10px; margin-top: 26px; }
+.faq-item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.faq-item summary {
+  cursor: pointer; padding: 16px 18px; font-weight: 570; font-size: 15px;
+  color: var(--ink); list-style: none; display: flex; align-items: center; gap: 12px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: ''; margin-left: auto; width: 9px; height: 9px; flex: none;
+  border-right: 2px solid var(--ink-2); border-bottom: 2px solid var(--ink-2);
+  transform: rotate(45deg); transition: transform .18s ease;
+}
+.faq-item[open] summary::after { transform: rotate(-135deg); }
+.faq-item summary:hover { background: var(--bg-sunk); }
+.faq-item summary:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.faq-a { padding: 0 18px 18px; font-size: 14.2px; line-height: 1.65; color: var(--ink-2); max-width: 76ch; }
+.faq-a code { background: var(--code-bg); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; font-size: .9em; color: var(--ink); font-family: var(--mono); }
+.faq-a p + p { margin-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .faq-item summary::after { transition: none; } }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "changelog-from-commits",
+  "alternateName": "changelog from commits",
+  "description": "Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Command Line Tool",
+  "operatingSystem": "macOS, Linux, Windows",
+  "softwareVersion": "0.1.0",
+  "softwareRequirements": "Node.js >= 18",
+  "url": "https://littleboy9.github.io/changelog-from-commits/",
+  "downloadUrl": "https://www.npmjs.com/package/changelog-from-commits",
+  "codeRepository": "https://github.com/LittleBoy9/changelog-from-commits",
+  "installUrl": "https://www.npmjs.com/package/changelog-from-commits",
+  "programmingLanguage": "TypeScript",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Sounak Das",
+    "url": "https://github.com/LittleBoy9"
+  },
+  "featureList": [
+    "Parses Conventional Commits into grouped changelog sections",
+    "Prominent breaking-changes section from ! markers and BREAKING CHANGE footers",
+    "Links entries to pull requests or commits on GitHub, GitLab and Bitbucket",
+    "Monorepo support via --tag-prefix and --path",
+    "Backfills an entire changelog from every git tag with --all",
+    "Pairs reverts so reverted work never appears as shipped",
+    "Understands gitmoji prefixes and alternate type spellings",
+    "Zero runtime dependencies, dual CommonJS and ESM builds"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is changelog-from-commits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "changelog-from-commits is a command-line tool that reads your git history and writes a formatted CHANGELOG.md. It parses commit messages that follow the Conventional Commits specification, groups them by type into sections like Features and Bug Fixes, and links every entry to its pull request or commit. It has zero runtime dependencies and needs no configuration file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I generate a CHANGELOG.md from my git commits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run npx changelog-from-commits inside any git repository. It reads every commit since your last git tag, groups them by conventional type, and prepends a new release section to CHANGELOG.md. Add --dry-run to print the result to stdout without writing a file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it require a config file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Every behaviour is a default and the tool is designed to work with no configuration at all. A config file is optional \u2014 changelog.config.js, .changelogrc.json and similar names are searched for upward from the working directory \u2014 and CLI flags always take precedence over config values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does it handle breaking changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Breaking changes are detected two ways: a ! after the type or scope (feat(api)!: drop v1), or a BREAKING CHANGE: footer in the commit body. They are rendered in a prominent \u26a0 BREAKING CHANGES section at the top of the release, using the footer text where present, since that is where the migration note lives. The commit also still appears under its own type section."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work in a monorepo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, using two flags together. --tag-prefix web-v scopes the commit range to that package's tags, and --path packages/web scopes which commits are included. You usually want both: with only the tag prefix, a package's changelog will list every other package's commits since that tag."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate a changelog for a repository that already has releases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. changelog-from-commits --all rebuilds the entire file, emitting one section per git tag plus an Unreleased section for anything after the newest tag. Because it replaces the file rather than prepending to it, it refuses to overwrite a non-empty changelog unless you also pass --force."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support gitmoji commit messages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A leading emoji or :shortcode: \u2014 as in \u2728 feat(auth): add OAuth \u2014 is stripped before parsing, so a repository that prefixes every commit still produces a complete changelog. The emoji is removed from the output by default; set keepEmoji: true in a config file to keep it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which git hosts are supported for commit and PR links?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The repository URL is detected from your origin remote, and scp-style (git@host:owner/repo.git), ssh:// and https:// remotes all parse. GitHub, GitLab and Bitbucket URL shapes are built correctly; any other host falls back to the GitHub shape, which most self-hosted forges use. Override with --repo-url, or disable links entirely with --no-links."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to commits that do not follow Conventional Commits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are skipped by default, and the CLI reports how many it dropped so the omission is never silent. Pass --include-all to collect them into an \"Other Changes\" section instead. Merge commits are always dropped, since the commits they bring in are already listed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it have any runtime dependencies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "None. git log is invoked directly through Node's child_process with a delimited --pretty format, and the argument parser is hand-rolled. Installing it adds exactly one package to your lockfile. It requires Node.js 18 or newer and ships CommonJS, ESM and TypeScript declarations."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -765,6 +936,7 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
       <a href="#features" class="nav-hide">Features</a>
       <a href="#monorepo" class="nav-hide">Monorepos</a>
       <a href="#cli">CLI</a>
+      <a href="#faq" class="nav-hide">FAQ</a>
       <a href="#config" class="nav-hide">Config</a>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch color theme">
         <svg class="theme-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
@@ -1277,6 +1449,58 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
 </main>
 
 <!-- ========== FOOTER ========== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Common questions.</h2>
+      <p class="lede">Short answers to what people ask most about generating changelogs from git history.</p>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>What is changelog-from-commits?</summary>
+        <div class="faq-a"><p><strong>changelog-from-commits</strong> is a command-line tool that reads your git history and writes a formatted <code>CHANGELOG.md</code>. It parses commit messages that follow the <a href="https://www.conventionalcommits.org" rel="noopener">Conventional Commits</a> specification, groups them by type into sections like Features and Bug Fixes, and links every entry to its pull request or commit. It has zero runtime dependencies and needs no configuration file.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I generate a CHANGELOG.md from my git commits?</summary>
+        <div class="faq-a"><p>Run <code>npx changelog-from-commits</code> inside any git repository. It reads every commit since your last git tag, groups them by conventional type, and prepends a new release section to <code>CHANGELOG.md</code>. Add <code>--dry-run</code> to print the result to stdout without writing a file.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it require a config file?</summary>
+        <div class="faq-a"><p>No. Every behaviour is a default and the tool is designed to work with no configuration at all. A config file is optional &mdash; <code>changelog.config.js</code>, <code>.changelogrc.json</code> and similar names are searched for upward from the working directory &mdash; and CLI flags always take precedence over config values.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How does it handle breaking changes?</summary>
+        <div class="faq-a"><p>Breaking changes are detected two ways: a <code>!</code> after the type or scope (<code>feat(api)!: drop v1</code>), or a <code>BREAKING CHANGE:</code> footer in the commit body. They are rendered in a prominent <code>&#9888; BREAKING CHANGES</code> section at the top of the release, using the footer text where present, since that is where the migration note lives. The commit also still appears under its own type section.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it work in a monorepo?</summary>
+        <div class="faq-a"><p>Yes, using two flags together. <code>--tag-prefix web-v</code> scopes the commit <em>range</em> to that package's tags, and <code>--path packages/web</code> scopes which <em>commits</em> are included. You usually want both: with only the tag prefix, a package's changelog will list every other package's commits since that tag.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I generate a changelog for a repository that already has releases?</summary>
+        <div class="faq-a"><p>Yes. <code>changelog-from-commits --all</code> rebuilds the entire file, emitting one section per git tag plus an Unreleased section for anything after the newest tag. Because it replaces the file rather than prepending to it, it refuses to overwrite a non-empty changelog unless you also pass <code>--force</code>.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it support gitmoji commit messages?</summary>
+        <div class="faq-a"><p>Yes. A leading emoji or <code>:shortcode:</code> &mdash; as in <code>&#10024; feat(auth): add OAuth</code> &mdash; is stripped before parsing, so a repository that prefixes every commit still produces a complete changelog. The emoji is removed from the output by default; set <code>keepEmoji: true</code> in a config file to keep it.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Which git hosts are supported for commit and PR links?</summary>
+        <div class="faq-a"><p>The repository URL is detected from your <code>origin</code> remote, and scp-style (<code>git@host:owner/repo.git</code>), <code>ssh://</code> and <code>https://</code> remotes all parse. GitHub, GitLab and Bitbucket URL shapes are built correctly; any other host falls back to the GitHub shape, which most self-hosted forges use. Override with <code>--repo-url</code>, or disable links entirely with <code>--no-links</code>.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to commits that do not follow Conventional Commits?</summary>
+        <div class="faq-a"><p>They are skipped by default, and the CLI reports how many it dropped so the omission is never silent. Pass <code>--include-all</code> to collect them into an "Other Changes" section instead. Merge commits are always dropped, since the commits they bring in are already listed.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it have any runtime dependencies?</summary>
+        <div class="faq-a"><p>None. <code>git log</code> is invoked directly through Node's <code>child_process</code> with a delimited <code>--pretty</code> format, and the argument parser is hand-rolled. Installing it adds exactly one package to your lockfile. It requires Node.js 18 or newer and ships CommonJS, ESM and TypeScript declarations.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-grid">

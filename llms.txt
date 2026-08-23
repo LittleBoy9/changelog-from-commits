@@ -1,0 +1,50 @@
+# changelog-from-commits
+
+> A command-line tool that generates a formatted CHANGELOG.md from git commit
+> history following the Conventional Commits specification. Zero configuration,
+> zero runtime dependencies. Requires Node.js 18 or newer. MIT licensed.
+
+Install and run with `npx changelog-from-commits` in any git repository.
+
+## What it does
+
+Reads every commit since the last git tag, parses each subject against the
+Conventional Commits grammar (`type(scope)!: description`), groups the results
+into sections (Features, Bug Fixes, Performance Improvements, and so on), links
+each entry to its pull request or commit, and prepends a new release section to
+CHANGELOG.md above the newest existing release.
+
+## Key behaviours
+
+- Breaking changes come from a `!` after the type/scope or a `BREAKING CHANGE:`
+  footer, and are rendered in a prominent section at the top of the release.
+- The repository URL is detected from the `origin` remote. GitHub, GitLab and
+  Bitbucket link shapes are built correctly; other hosts fall back to GitHub's.
+- Non-conventional commits are skipped by default and the count is reported;
+  `--include-all` collects them into an "Other Changes" section.
+- Merge commits are always dropped.
+- A commit and its revert inside the same range cancel out.
+- Gitmoji prefixes (`✨ feat: ...`, `:sparkles: feat: ...`) are understood.
+- Alternate type spellings (`feature`, `bugfix`, `doc`) fold onto canonical types.
+- Prereleases: a stable release starts from the last *stable* tag, so commits
+  that went into a beta are not lost.
+
+## Common commands
+
+- `npx changelog-from-commits` — everything since the last tag
+- `npx changelog-from-commits --dry-run` — preview without writing
+- `npx changelog-from-commits --version 1.4.0` — set the release heading
+- `npx changelog-from-commits --all --force` — rebuild the whole file from every tag
+- `npx changelog-from-commits --tag-prefix web-v --path packages/web` — one monorepo package
+
+## Monorepos
+
+`--tag-prefix` scopes the commit range to a package's tags; `--path` scopes which
+commits are included. Both are usually needed together — with only the tag prefix,
+a package's changelog lists every other package's commits since that tag.
+
+## Links
+
+- Homepage and interactive playground: https://littleboy9.github.io/changelog-from-commits/
+- Source: https://github.com/LittleBoy9/changelog-from-commits
+- npm: https://www.npmjs.com/package/changelog-from-commits

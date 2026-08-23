@@ -1,14 +1,28 @@
 {
   "name": "changelog-from-commits",
   "version": "0.1.0",
-  "description": "Generate a polished CHANGELOG.md from Conventional Commits git history. Zero config, zero runtime dependencies.",
+  "description": "Generate a polished CHANGELOG.md from your git history using Conventional Commits. Zero config, zero runtime dependencies, monorepo and gitmoji aware.",
   "keywords": [
     "changelog",
+    "changelog-generator",
     "conventional-commits",
-    "git",
+    "conventional-changelog",
+    "CHANGELOG.md",
+    "release-notes",
     "release",
+    "git",
+    "git-log",
+    "commits",
+    "commit-parser",
+    "semver",
+    "versioning",
+    "monorepo",
+    "gitmoji",
+    "breaking-changes",
     "cli",
-    "semver"
+    "zero-dependency",
+    "typescript",
+    "automation"
   ],
   "license": "MIT",
   "author": "Sounak Das",
@@ -19,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/LittleBoy9/changelog-from-commits/issues"
   },
-  "homepage": "https://github.com/LittleBoy9/changelog-from-commits#readme",
+  "homepage": "https://littleboy9.github.io/changelog-from-commits/",
   "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
