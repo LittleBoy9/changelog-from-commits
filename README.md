@@ -343,4 +343,4 @@ the built CLI against it.
 
 ## License
 
-MIT
+MIT © Sounak Das

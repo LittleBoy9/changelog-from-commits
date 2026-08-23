@@ -11,6 +11,15 @@
     "semver"
   ],
   "license": "MIT",
+  "author": "Sounak Das",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittleBoy9/changelog-from-commits.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LittleBoy9/changelog-from-commits/issues"
+  },
+  "homepage": "https://github.com/LittleBoy9/changelog-from-commits#readme",
   "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
