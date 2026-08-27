@@ -1,9 +1,12 @@
 # changelog-from-commits
 
-Generate a polished `CHANGELOG.md` from your git history, following the
-[Conventional Commits](https://www.conventionalcommits.org) spec.
+**changelog-from-commits** is a command-line tool that generates a formatted
+`CHANGELOG.md` from your git commit history, following the
+[Conventional Commits](https://www.conventionalcommits.org) specification.
+It groups commits by type, links each entry to its pull request or commit, and
+prepends the new release section to your existing changelog.
 
-Zero config, **zero runtime dependencies**.
+Zero config, **zero runtime dependencies**, Node 18+.
 
 [![npm version](https://img.shields.io/npm/v/changelog-from-commits.svg)](https://www.npmjs.com/package/changelog-from-commits)
 [![node](https://img.shields.io/node/v/changelog-from-commits.svg)](https://www.npmjs.com/package/changelog-from-commits)
@@ -346,6 +349,50 @@ Tests cover the parser, renderer, arg parser, config loader, and file splicing a
 units; `test/fixtures/` holds a captured `git log` and its expected changelog
 output; and `test/integration.test.ts` builds a throwaway git repository and runs
 the built CLI against it.
+
+## FAQ
+
+### How do I generate a CHANGELOG.md from my git commits?
+
+Run `npx changelog-from-commits` in any git repository. It reads every commit
+since your last git tag, groups them by conventional type, and prepends a new
+release section to `CHANGELOG.md`. Add `--dry-run` to preview without writing.
+
+### Does it require a config file?
+
+No. Every behaviour is a default and the tool works with no configuration. A
+config file is optional, and CLI flags always take precedence over it.
+
+### How does it handle breaking changes?
+
+It detects both a `!` after the type or scope (`feat(api)!: drop v1`) and a
+`BREAKING CHANGE:` footer, and renders them in a prominent
+`⚠ BREAKING CHANGES` section at the top of the release.
+
+### Does it work in a monorepo?
+
+Yes. `--tag-prefix web-v` scopes the commit range to that package's tags, and
+`--path packages/web` scopes which commits are included. You usually want both.
+
+### Can I generate a changelog for a repo that already has releases?
+
+Yes — `--all` rebuilds the whole file with one section per tag. It replaces the
+file, so it refuses to overwrite a non-empty changelog without `--force`.
+
+### Does it support gitmoji?
+
+Yes. A leading emoji or `:shortcode:` is stripped before parsing, so
+`✨ feat(auth): add OAuth` parses correctly. Set `keepEmoji: true` to keep it.
+
+### What happens to commits that aren't conventional?
+
+They're skipped by default, and the CLI reports how many it dropped so the
+omission is never silent. Use `--include-all` to keep them under "Other Changes".
+
+### Does it have runtime dependencies?
+
+None. `git log` is invoked directly via `child_process` and the argument parser
+is hand-rolled. Installing it adds exactly one package to your lockfile.
 
 ## License
 
