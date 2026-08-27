@@ -760,6 +760,34 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
 .faq-a code { background: var(--code-bg); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; font-size: .9em; color: var(--ink); font-family: var(--mono); }
 .faq-a p + p { margin-top: 10px; }
 @media (prefers-reduced-motion: reduce) { .faq-item summary::after { transition: none; } }
+
+/* --- npm / source links ---------------------------------------------- */
+.ver-link {
+  text-decoration: none; transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.ver-link:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.ver-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.nav-sep { width: 1px; height: 18px; background: var(--line); margin: 0 6px; flex: none; }
+
+.hero-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.hlink {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 10px 17px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink); font-size: 14.5px; font-weight: 540;
+  text-decoration: none; transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.hlink svg { width: 17px; height: 17px; flex: none; }
+.hlink:hover { transform: translateY(-1px); border-color: var(--ink-3); background: var(--bg-sunk); }
+.hlink:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.hlink-primary {
+  /* --accent-ink is the palette's designated on-accent foreground, and already
+     flips per theme, so it stays legible without a hand-written override. */
+  border-color: transparent; background: var(--accent); color: var(--accent-ink);
+}
+.hlink-primary:hover { background: var(--accent); border-color: transparent; filter: brightness(1.06); }
+@media (prefers-reduced-motion: reduce) { .hlink { transition: none; } .hlink:hover { transform: none; } }
+@media (max-width: 560px) { .hlink { flex: 1 1 100%; justify-content: center; } }
 </style>
 <script type="application/ld+json">
 {
@@ -771,7 +799,7 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
   "applicationCategory": "DeveloperApplication",
   "applicationSubCategory": "Command Line Tool",
   "operatingSystem": "macOS, Linux, Windows",
-  "softwareVersion": "0.1.0",
+  "softwareVersion": "0.1.1",
   "softwareRequirements": "Node.js >= 18",
   "url": "https://littleboy9.github.io/changelog-from-commits/",
   "downloadUrl": "https://www.npmjs.com/package/changelog-from-commits",
@@ -929,8 +957,8 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
         <circle cx="18" cy="17" r="2.4" fill="var(--fix)"/>
       </svg>
       <span class="name">changelog-from-commits</span>
-      <span class="ver">v0.1.0</span>
     </a>
+    <a class="ver ver-link" href="https://www.npmjs.com/package/changelog-from-commits" aria-label="changelog-from-commits v0.1.1 on npm">v0.1.1 on npm</a>
     <nav class="nav" aria-label="Sections">
       <a href="#playground">Playground</a>
       <a href="#features" class="nav-hide">Features</a>
@@ -938,6 +966,13 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
       <a href="#cli">CLI</a>
       <a href="#faq" class="nav-hide">FAQ</a>
       <a href="#config" class="nav-hide">Config</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="icon-btn" href="https://www.npmjs.com/package/changelog-from-commits" aria-label="changelog-from-commits on npm">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 6h20v11H12v2H7v-2H2V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 10v4M9.5 10v4M9.5 10H6M13 10v4M16.5 10v4M16.5 10H13M20 10v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/LittleBoy9/changelog-from-commits" aria-label="Source code on GitHub">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.69-4.58 4.937.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </a>
       <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch color theme">
         <svg class="theme-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
         <svg class="theme-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
@@ -966,7 +1001,7 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
           <span class="badge">Node &gt;= 18</span>
           <span class="badge">MIT</span>
           <span class="badge">CJS + ESM + .d.ts</span>
-          <span class="badge">280 tests &middot; 96.8% stmts</span>
+          <span class="badge">304 tests &middot; 97% stmts</span>
         </div>
 
         <div class="cmd" id="heroCmd">
@@ -981,6 +1016,17 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
         <p class="hero-note">
           No config needed. Add <code>--dry-run</code> to preview it without writing a file.
         </p>
+
+        <div class="hero-links">
+          <a class="hlink hlink-primary" href="https://www.npmjs.com/package/changelog-from-commits">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 6h20v11H12v2H7v-2H2V6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 10v4M9.5 10v4M9.5 10H6M13 10v4M16.5 10v4M16.5 10H13M20 10v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            View on npm
+          </a>
+          <a class="hlink" href="https://github.com/LittleBoy9/changelog-from-commits">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.69-4.58 4.937.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            Source on GitHub
+          </a>
+        </div>
       </div>
 
       <div class="hero-art" aria-hidden="true">
@@ -1529,12 +1575,12 @@ footer.site-footer { border-top: 1px solid var(--line); background: var(--bg-sun
           <h4>Facts</h4>
           <span>MIT licensed</span>
           <span>Node &gt;= 18</span>
-          <span>v0.1.0</span>
+          <span>v0.1.1</span>
         </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <span class="mono">280 tests &middot; 96.8% statement coverage</span>
+      <span class="mono">304 tests &middot; 97% statement coverage</span>
       <span class="mono">MIT &middot; requires git on PATH</span>
     </div>
   </div>
